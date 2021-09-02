@@ -16,7 +16,12 @@ export class EcsEc2Rds extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props: EcsEc2RdsProps) {
     super(scope, id, props);
 
+    // Configure the `natGatewayProvider` when defining a Vpc
     const vpc = new ec2.Vpc(this, "Vpc", {
+      natGatewayProvider: ec2.NatProvider.instance({
+        instanceType: ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.MICRO),
+      }),
+      natGateways: 1,
       maxAzs: 2,
     });
 

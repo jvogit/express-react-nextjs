@@ -20,7 +20,7 @@ export class PostgresRDSStack extends cdk.Stack {
       instanceIdentifier: props.instanceIdentifier,
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.MICRO),
       vpcSubnets: {
-        subnetType: ec2.SubnetType.ISOLATED,
+        subnetType: ec2.SubnetType.PRIVATE,
       },
       vpc: props.vpc,
       allocatedStorage: 5,

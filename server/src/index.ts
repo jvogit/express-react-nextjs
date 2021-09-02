@@ -32,6 +32,7 @@ import path from "path";
     })
   );
   app.use(cookieParser());
+  app.get('/', async (_, res) => res.send("healthy"));
   app.post('/refresh_token', async (req, res) => {
     const token = req.cookies.jid;
     if (!token) {
@@ -47,7 +48,7 @@ import path from "path";
     }
 
     const user = await User.findOne({ id: payload.userId });
-
+ 
     if (!user) {
       // user doesn't exist anymore
       return res.send({ ok: false, accessToken: '' });
