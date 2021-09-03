@@ -22,6 +22,9 @@ export class PostgresRDSStack extends cdk.Stack {
       vpcSubnets: {
         subnetType: ec2.SubnetType.PRIVATE,
       },
+      // save money. live better.
+      // should probably change this in production!
+      backupRetention: cdk.Duration.days(0),
       vpc: props.vpc,
       allocatedStorage: 5,
       databaseName: props.databaseName,
